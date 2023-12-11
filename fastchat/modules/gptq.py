@@ -40,7 +40,7 @@ def load_gptq_quantized(model_name, gptq_config: GptqConfig):
         print("See https://github.com/lm-sys/FastChat/blob/main/docs/gptq.md")
         sys.exit(-1)
 
-    tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=False)
+    tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=False, trust_remote_code=True)
     # only `fastest-inference-4bit` branch cares about `act_order`
     if gptq_config.act_order:
         model = load_quant(
